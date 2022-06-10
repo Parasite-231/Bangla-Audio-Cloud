@@ -302,7 +302,7 @@ if (isset($_POST['search'])) {
                                 <th>MUSIC_TITLE</th>
                                 <th>ALBUM</th>
                                 <th>ADDED_DATE</th>
-                                <th>ARTIST_NAME</th>
+                                <th>SINGER_NAME</th>
 
                             </tr>
                         </thead>
@@ -315,7 +315,7 @@ if ($result && mysqli_num_rows($result) > 0) {
         $MUSIC_TITLE = $list['MUSIC_TITLE'];
         $ALBUM = $list['ALBUM'];
         $ADDED_DATE = $list['ADDED_DATE'];
-        $ARTIST_NAME = $list['ARTIST_NAME'];
+        $SINGER_NAME = $list['SINGER_NAME'];
   
 
         echo "
@@ -325,7 +325,7 @@ if ($result && mysqli_num_rows($result) > 0) {
             <td>$MUSIC_TITLE</td>
             <td>$ALBUM</td>
             <td>$ADDED_DATE</td>
-            <td>$ARTIST_NAME</td>
+            <td>$SINGER_NAME</td>
     
         </tr>
      
