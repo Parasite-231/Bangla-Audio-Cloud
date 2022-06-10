@@ -44,10 +44,8 @@ if (isset($_POST['upload']) && isset($_FILES['my_audio']))
     		move_uploaded_file($tmp_name, $audio_upload_path);
 
     		// Now let's Insert the video path into database
-            // $query = addTrack($new_audio_name,$album,$title,$artist_id );
-            
-            $query = "INSERT INTO MUSIC_INFORMATION (FILE,MUSIC_TITLE,ALBUM,ARTIST_INFO_ID) 
-            VALUES ('$new_audio_name','$title','$album','$artist_id')";
+            $query = addTrack($new_audio_name,$album,$title,$artist_id );
+        
            
             mysqli_query($conn, $query);
             header("Location: showSuccess.php");

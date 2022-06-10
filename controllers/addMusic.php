@@ -8,7 +8,7 @@ function addTrack($new_audio_name,$album,$title,$artist_id){
 
 
   $query = "INSERT INTO MUSIC_INFORMATION (FILE,MUSIC_TITLE,ALBUM,ARTIST_INFO_ID) 
-  VALUES ($new_audio_name,$album,$title,$artist_id)";
+  VALUES ('$new_audio_name','$title','$album','$artist_id')";
   
   return $query;
    
