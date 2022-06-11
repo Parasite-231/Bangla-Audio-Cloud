@@ -7,24 +7,57 @@ require("../Functions/function.php");
 
 $result = 0;
 
-if(isset($_POST['add']))
-{    
+if(isset($_POST['add']) && isset($_FILES['my_image']))
+{    include "../database/db_conn.php";
      $name = $_POST['name'];
+     $img_name = $_FILES['my_image']['name'];
+	$img_size = $_FILES['my_image']['size'];
+	$tmp_name = $_FILES['my_image']['tmp_name'];
+	$error = $_FILES['my_image']['error'];
      $nationality = $_POST['nationality'];
-     
-     
-     require("../controllers/addArtist.php");
-     $query = addSinger($name,$nationality);
 
-     if (mysqli_query($conn, $query)) {
-  
-        header("Location: showSuccess.php");
-     } else {
-        echo 
-        header("Location: showError.php");
-     }
+     require("../controllers/addArtist.php");
+     if ($error === 0) {
+		if ($img_size > 3221225472) {
+			$em = "Sorry, your file is too large ! Try again";
+		    header("Location: showError.php?error=$em");
+		}else {
+			$img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
+			$img_ex_lc = strtolower($img_ex);
+
+			$allowed_exs = array("jpg", "jpeg", "png"); 
+
+			if (in_array($img_ex_lc, $allowed_exs)) {
+				$new_img_name = uniqid("IMG-", true).'.'.$img_ex_lc;
+				$img_upload_path = '../images/'.$new_img_name;
+				move_uploaded_file($tmp_name, $img_upload_path);
+
+				// Insert into Database
+				// $query = "INSERT INTO ARTIST_INFORMATION(ARTIST_IMAGE) 
+				//         VALUES('$new_img_name')";
+                
+				// mysqli_query($conn, $sql);
+				// header("Location: view.php");
+                // Now let's Insert the video path into database
+                $query = addSinger($name,$new_img_name,$nationality);
+        
+           
+            mysqli_query($conn, $query);
+            header("Location: showSuccess.php");
+                
+			}else {
+				header("Location: showError.php");
+			}
+		}
+    }
+	}
+
+
+     
+     
+     
     //  mysqli_close($conn);
-}
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -252,11 +285,16 @@ if(isset($_POST['add']))
 
                 <div class="card w-100" style="height: auto;">
                     <div class=" card-body" style="width: 100% ;height:auto">
-                        <form method="POST">
+                        <form method="POST" enctype="multipart/form-data">
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Singer Name</label>
                                 <input type="text" class="form-control" name="name" id="exampleFormControlInput1"
                                     placeholder="Singer name">
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="inputGroupFile02" name="my_image"
+                                    style="width: 100%;">
+                                <label class="custom-file-label" for="inputGroupFile02"></label>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Nationality</label>

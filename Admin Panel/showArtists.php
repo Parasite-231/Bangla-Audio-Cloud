@@ -252,42 +252,47 @@ $result = 0;
 
 
                 <!-- <h2>Section title</h2> -->
-                <div class="table-responsive" id="printableTable" style="margin-top:20px ;">
-                    <table class="table table-bordered table-dark" style=" border: 20px white;font-size: 16px;">
-                        <thead>
-                            <tr>
-                                <th>SINGER_ID</th>
-                                <th>SINGER_NAME</th>
-                                <th>NATIONALITY</th>
-                                <th>ADDED_DATE</th>
+                <form action="" method="POST" enctype="multipart/form-data">
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
+
+                    <div class="table-responsive" id="printableTable" style="margin-top:20px ;">
+                        <table class="table table-bordered table-dark" style=" border: 20px white;font-size: 16px;">
+                            <thead>
+                                <tr>
+                                    <th>SINGER_ID</th>
+                                    <th>SINGER_NAME</th>
+                                    <th>IMAGE</th>
+                                    <th>NATIONALITY</th>
+                                    <th>ADDED_DATE</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
 
 if ($result && mysqli_num_rows($result) > 0) {
     while ($list = mysqli_fetch_assoc($result)) {
-        $SINGER_ID = $list['SINGER_ID'];
-        $SINGER_NAME = $list['SINGER_NAME'];
-        $NATIONALITY = $list['NATIONALITY'];
-        $ADDED_DATE = $list['ADDED_DATE'];
+        // $SINGER_ID = $list['SINGER_ID'];
+        // $SINGER_NAME = $list['SINGER_NAME'];
+        // // $SINGER_IMAGE = $list['ARTIST_IMAGE'];
+        // $NATIONALITY = $list['NATIONALITY'];
+        // $ADDED_DATE = $list['ADDED_DATE'];
+
+        ?>
+                                <tr>
+                                    <td><?php echo $list['SINGER_ID']; ?></td>
+                                    <td><?php echo $list['SINGER_NAME']; ?></td>
+                                    <td>
+                                        <img src="<?php echo "../images/".$list['ARTIST_IMAGE']; ?>" width="100px"
+                                            style="text-align:centre ;" alt="">
+                                    </td>
+                                    <td><?php echo $list['NATIONALITY']; ?></td>
+                                    <td><?php echo $list['ADDED_DATE']; ?></td>
+                                </tr>
+
+                                <?php
   
 
-        echo "
-      
-        <tr>
-            <td>$SINGER_ID</td>
-            <td>$SINGER_NAME</td>
-            <td>$NATIONALITY</td>
-            <td>$ADDED_DATE</td>
-    
-        </tr>
-     
-        
-        
-
-        ";
       
     }
     // echo "<input type='button' class='btn btn-warning' style='margin:1%' onclick='PrintTable();' value='Print'/>";
@@ -308,9 +313,10 @@ else  if($result && mysqli_num_rows($result) <= 0){
   
 ?>
 
-                        </tbody>
-                    </table>
-                </div>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
                 <iframe name="print_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe>
 
 

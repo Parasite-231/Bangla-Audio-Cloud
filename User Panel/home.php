@@ -1,56 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View</title>
-    <style>
-    body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-        min-height: 100vh;
-    }
-
-    audio {
-        width: 640px;
-        height: 360px;
-    }
-
-    a {
-        text-decoration: none;
-        color: #006CFF;
-        font-size: 1.5rem;
-    }
-    </style>
-</head>
-
-<body>
+<?php include('./partials/header.php') ?>
+<?php include('./partials/navbar.php') ?>
+<?php include('./partials/showFrames.php') ?>
 
 
-    <div class="alb">
-        <?php 
-		 include "../database/db_conn.php";
-		 $sql = "SELECT * FROM MUSIC_INFORMATION ORDER BY MUSIC_INFO_ID DESC";
-		 $res = mysqli_query($conn, $sql);
-
-		 if (mysqli_num_rows($res) > 0) {
-		 	while ($audio = mysqli_fetch_assoc($res)) { 
-		 ?>
-
-        <audio src="../uploads/<?=$audio['FILE']?>" controls>
-
-        </audio>
+<div class="container py-5">
+    <div class="row mt-4">
 
         <?php 
-	     }
-		 }else {
-		 	echo "<h1>Empty</h1>";
-		 }
-		 ?>
+    require '../database/db_conn.php';
+    require("../controllers/showCards.php");
+
+
+   
+    $query = showCards();
+    $run = mysqli_query($conn,$query);
+    $data = mysqli_num_rows($run) > 0 ;
+    if($data){
+
+        while ($row = mysqli_fetch_assoc($run)) {
+           
+            ?>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;margin:2%">
+                <img src="../images/<?php echo $row['ARTIST_IMAGE'] ?>" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Singer : <?php echo $row['ARTIST_NAME'] ?></h5>
+                    <p class="card-text">Nationality : <?php echo $row['NATIONALITY'] ?></p>
+
+
+                    <a href="songChart.php" class="btn btn-primary">Listen&nbsp;<img src="../icons/icon6.png"
+                            height="30px" width="30px" /></a>
+                </div>
+            </div>
+        </div>
+
+        <?php
+        }
+    }
+
+    else{
+
+        header("Location: error.php");
+    }
+
+    ?>
+
+
+
+
     </div>
+</div>
 </body>
 
 </html>
