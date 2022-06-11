@@ -31,6 +31,7 @@ require '../database/db_conn.php';
 
 <?php
 
+    $placeholder = "Search by music...";
     include("./partials/navbar.php");
     require("../controllers/showSingerName.php");
 
@@ -121,8 +122,10 @@ if (mysqli_num_rows($res) > 0) {
 
 <?php 
 }
-}else {
-    echo "<h1>Empty</h1>";
+}else if(mysqli_num_rows($res) <= 0) {
+    $error = "Sorry ! Your requested Data can't be proceed at this moment :(";
+    header("Location: error.php??error=$error");
+    
 }
 
 ?>

@@ -75,46 +75,10 @@ if ($result && mysqli_num_rows($result) > 0) {
         <div class="row">
             <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
                 <div class="position-sticky pt-3">
-                    <ul class="nav flex-column">
-                        <li class="nav-item ">
-
-                            <a class="nav-link active" style="color: white;" aria-current="page" href="dashboard.php">
-
-                                <i class='bx bxs-dashboard'></i>
-                                Dashboard
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="showSensors.php" class="nav-link " style="color: white;">
-                                <i class='bx bxs-analyse'></i>
-                                Artists
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="showLocations.php" class="nav-link " style="color: white;">
-                                <i class='bx bxs-building-house'></i>
-                                Musics
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <p style="color:cyan">Add Data &nbsp;<i class='bx bxs-right-arrow'></i></p>
-                            <a class="nav-link " href="sensorDataBasedOnTwoLocationBetweenTwoDate.php"
-                                style="color: white;">
-                                <i class='bx bxs-location-plus'></i>
-                                Add Artist
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="sensorDataBasedOnSpecificSensorAndLocationBased.php"
-                                style="color: white;">
-                                <i class='bx bxs-edit-location'></i>
-                                Add Music
-                            </a>
-                        </li>
-
-
-
-                    </ul>
+                    <!--sidebar-->
+                    <?php 
+                include("./partials/sideBar.php");
+                ?>
                     <hr>
 
                     <div class="dropdown">

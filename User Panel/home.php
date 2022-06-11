@@ -22,7 +22,7 @@
 </head>
 
 <?php
-
+    $placeholder = "Search by singer...";
     include("./partials/navbar.php");
     include("./partials/showFrames.php");
     include("./partials/showHeading.php");
