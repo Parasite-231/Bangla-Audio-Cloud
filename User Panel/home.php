@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Bangla Music Cloud </title>
+    <title>Welcome | Bangla Music Cloud </title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="../icons/icon2.png">
@@ -53,9 +53,12 @@
                     <h5 class="card-title">Singer : <?php echo $row['ARTIST_NAME'] ?></h5>
                     <p class="card-text">Nationality : <?php echo $row['NATIONALITY'] ?></p>
 
+                    <form>
+                        <a href="songChart.php?id=<?php echo $row['ARTIST_INFO_ID'];?>"
+                            class="btn btn-info">Listen&nbsp;<img src="../icons/icon5.png" height="30px"
+                                width="30px" /></a>
 
-                    <a href="songChart.php" class="btn btn-primary">Listen&nbsp;<img src="../icons/icon6.png"
-                            height="30px" width="30px" /></a>
+                    </form>
                 </div>
             </div>
         </div>
