@@ -29,6 +29,7 @@ require '../database/db_conn.php';
     <script src="../js/audioBot.js"></script>
 </head>
 
+
 <?php
 
     $placeholder = "Search by music...";
@@ -55,7 +56,10 @@ require '../database/db_conn.php';
     
 ?>
 
-<?php
+<hr>
+<div class="bg">
+    <!-- <div class="container"> -->
+    <?php
 
 $id = $_GET['id'];	
 
@@ -65,72 +69,73 @@ if (mysqli_num_rows($res) > 0) {
     while ($audio = mysqli_fetch_assoc($res)) { 
 ?>
 
-<!-- Full Page Intro -->
+    <!-- Full Page Intro -->
 
-<div class="view">
-    <!-- Mask & flexbox options-->
-    <div class="mask gradient-card align-items-center">
-        <!-- Content -->
+    <div class="view" style="display: inline-block ;margin:1%">
+        <!-- Mask & flexbox options-->
+        <div class="mask gradient-card align-items-center">
+            <!-- Content -->
 
-        <div class="container d-flex justify-content my-4 mb-5">
+            <div class="container ">
 
-            <div id="mobile-box">
+                <div id="mobile-box">
 
 
-                <!-- Card -->
-                <div class="card">
+                    <!-- Card -->
+                    <div class="card">
 
-                    <!-- Card image -->
-                    <div class="view">
-                        <img class="card-img-top" src="../icons/a.jpg" alt="Card image cap">
-                        <a href="https://bachataurban.com/" target="_blank">
-                            <div class="mask gradient-card"></div>
-                        </a>
+                        <!-- Card image -->
+                        <div class="view">
+                            <img class="card-img-top" src="../icons/a.jpg" alt="Card image cap">
+                            <a href="https://bachataurban.com/" target="_blank">
+                                <div class="mask gradient-card"></div>
+                            </a>
+                        </div>
+
+                        <!-- Card content -->
+                        <div class="card-body text-center">
+
+                            <h5 class="h5 font-weight-bold"><a href="https://bachataurban.com/" target="_blank">
+                                    Music Title
+                                    : <?php echo $audio['MUSIC_TITLE'] ?></a></h5>
+                            <p class="mb-0">Album : <?php echo $audio['ALBUM'] ?></p>
+                            <hr>
+                            <audio id="music" preload="true" controls>
+                                <source src="../uploads/<?=$audio['FILE']?>">
+                            </audio>
+
+
+                        </div>
+
                     </div>
+                    <!-- Card -->
 
-                    <!-- Card content -->
-                    <div class="card-body text-center">
-
-                        <h5 class="h5 font-weight-bold"><a href="https://bachataurban.com/" target="_blank">
-                                Music Title
-                                : <?php echo $audio['MUSIC_TITLE'] ?></a></h5>
-                        <p class="mb-0">Album : <?php echo $audio['ALBUM'] ?></p>
-                        <hr>
-                        <audio id="music" preload="true" controls>
-                            <source src="../uploads/<?=$audio['FILE']?>">
-                        </audio>
-
-
-                    </div>
 
                 </div>
-                <!-- Card -->
-
-
             </div>
+            <!-- Content -->
+
+
+
         </div>
-        <!-- Content -->
-
-
-
+        <!-- Mask & flexbox options-->
     </div>
-    <!-- Mask & flexbox options-->
-</div>
-<!-- Full Page Intro -->
+    <!-- Full Page Intro -->
 
 
 
-<?php 
+    <?php 
 }
 }else if(mysqli_num_rows($res) <= 0) {
     $error = "Sorry ! Your requested Data can't be proceed at this moment :(";
-    header("Location: error.php??error=$error");
+    header("Location: error.php?error=$error");
     
 }
 
 ?>
-
-
+</div>
+<hr>
+<!-- </div> -->
 <script src="../js/audioBot.js"></script>
 </body>
 

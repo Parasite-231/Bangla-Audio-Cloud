@@ -51,7 +51,7 @@
                     height="300px" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Singer : <?php echo $row['ARTIST_NAME'] ?></h5>
-                    <p class="card-text">Nationality : <?php echo $row['NATIONALITY'] ?></p>
+                    <p class="card-text" style="font-style:normal ;">Nationality : <?php echo $row['NATIONALITY'] ?></p>
 
                     <form>
                         <a href="songChart.php?id=<?php echo $row['ARTIST_INFO_ID'];?>"
