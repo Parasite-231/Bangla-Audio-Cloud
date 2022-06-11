@@ -1,8 +1,33 @@
-<?php include('./partials/header.php') ?>
-<?php include('./partials/navbar.php') ?>
-<?php include('./partials/showFrames.php') ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bangla Music Cloud </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="../icons/icon2.png">
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="../../icons/icon2.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../../icons/icon3.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../../icons/icon4.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../../icons/icon5.png"> -->
+    <link rel="stylesheet" href="./css/fit.css">
+    <!-- <link href="css/style.css" rel="stylesheet"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
 
 
+</head>
+
+<?php
+
+    include("./partials/navbar.php");
+    include("./partials/showFrames.php");
+    include("./partials/showHeading.php");
+    
+?>
 <div class="container py-5">
     <div class="row mt-4">
 
@@ -21,8 +46,9 @@
            
             ?>
         <div class="col-md-4">
-            <div class="card" style="width: 18rem;margin:2%">
-                <img src="../images/<?php echo $row['ARTIST_IMAGE'] ?>" class="card-img-top" alt="...">
+            <div class="card">
+                <img src="../images/<?php echo $row['ARTIST_IMAGE'] ?>" class="card-img-top" width="340px"
+                    height="300px" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Singer : <?php echo $row['ARTIST_NAME'] ?></h5>
                     <p class="card-text">Nationality : <?php echo $row['NATIONALITY'] ?></p>
