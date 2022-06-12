@@ -45,7 +45,7 @@ require '../database/db_conn.php';
         while ($row = mysqli_fetch_assoc($run)) {
            
             	
-            $artist_name = $row['ARTIST_NAME'];
+            $artist_name = preg_replace('/(?<!\ )[A-Z]/', ' $0', $row['ARTIST_NAME']);
 
 
             include("./partials/songListHeader.php");
