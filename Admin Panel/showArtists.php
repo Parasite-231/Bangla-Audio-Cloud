@@ -185,7 +185,7 @@ $result = 0;
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div
                     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="heading" style="font-size: 17px;"> <i class='bx bxs-notepad'></i></i>&nbsp;Active Singers
+                    <h1 class="heading" style="font-size: 17px;"> <i class='bx bxs-notepad'></i></i>&nbsp;Show Singers
                     </h1>
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <!-- <div class="btn-group me-2">
@@ -261,7 +261,7 @@ if ($result && mysqli_num_rows($result) > 0) {
     }
     // echo "<input type='button' class='btn btn-warning' style='margin:1%' onclick='PrintTable();' value='Print'/>";
 
-    echo " <a href='showTracks.php' style='float:right;margin:1%' class='btn btn-danger'>Reset</a>";
+    
 
     
 }

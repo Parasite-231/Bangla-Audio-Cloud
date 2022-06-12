@@ -10,21 +10,23 @@ $selected_singer = '';
 $artist_info_id = 0;
 
 if (isset($_POST['upload']) && isset($_FILES['my_audio'])) 
-{    include "../database/db_conn.php";
+{
+        include "../database/db_conn.php";
     $audio_name = $_FILES['my_audio']['name'];
     $tmp_name = $_FILES['my_audio']['tmp_name'];
     $error = $_FILES['my_audio']['error'];
      $album = $_POST['album'];
      $title = $_POST['title'];
      $selected_singer = $_POST['selected_singer'];
-     
-     $artist_info_id = "SELECT ARTIST_INFO_ID AS ARTIST_INFO_ID FROM ARTIST_INFORMATION WHERE ARTIST_NAME = '$selected_singer' ";
+    //  echo $selected_singer;
+    //  $artist_info_id = "SELECT ARTIST_INFO_ID FROM artist_information WHERE ARTIST_NAME LIKE '%$selected_singer%' ";
+     $artist_info_id = "SELECT ARTIST_INFO_ID FROM artist_information WHERE ARTIST_NAME = '$selected_singer' ";
     // echo $selected_sensor;
     $result = mysqli_query($conn, $artist_info_id);
     if ($result && mysqli_num_rows($result) > 0) {
         $s_id = mysqli_fetch_assoc($result);
         $artist_id = $s_id['ARTIST_INFO_ID'];
-        // echo "$sensor_id";
+        // echo $artist_id;
         
     }
      
@@ -45,9 +47,13 @@ if (isset($_POST['upload']) && isset($_FILES['my_audio']))
 
     		// Now let's Insert the video path into database
             $query = addTrack($new_audio_name,$album,$title,$artist_id );
-        
+            
+            // $query = "INSERT INTO MUSIC_INFORMATION (FILE,MUSIC_TITLE,ALBUM,ARTIST_INFO_ID) 
+            // VALUES ('$new_audio_name','$title','$album','$artist_id')";
+            
+                
            
-            mysqli_query($conn, $query);
+             mysqli_query($conn, $query);
             header("Location: showSuccess.php");
     	}else {
     		header("Location: showError.php");
@@ -269,7 +275,7 @@ if (isset($_POST['upload']) && isset($_FILES['my_audio']))
                             </div>
                             <div class="col-md-4 col-lg-2 "
                                 style="width:100%; margin: 0 auto; float: none; margin-bottom: 10px;">
-                                <label class="control-label" for="date">Select Singer : </label>
+                                <label class="control-label" for="date" multiple="multiple">Select Singer : </label>
                                 <?php
                                   
 
@@ -277,21 +283,22 @@ if (isset($_POST['upload']) && isset($_FILES['my_audio']))
 
 
                                   //Gather Information
-                                  $sql_for_selected_singer = "SELECT * FROM ARTIST_INFORMATION ORDER BY ARTIST_INFO_ID ASC";
+                                  $sql_for_selected_singer = "SELECT ARTIST_NAME FROM ARTIST_INFORMATION ORDER BY ARTIST_INFO_ID ASC";
                                   $result_for_selected_singer = mysqli_query($conn, $sql_for_selected_singer);
 
                                   ?>
 
-                                <select class="form-select" aria-label="Select Specific Region" id="selected_sensor"
+                                <select class="form-select" aria-label="Select Specific Region" id="selected_singer"
                                     name="selected_singer">
 
-                                    <option value='<?php echo $selected_singer ?>'><?php echo $selected_singer ?>
+                                    <option value='<?php echo $selected_singer ?>'>
+                                        <?php echo $selected_singer ?>
                                     </option>
 
                                     <!-- Loop For Fetch Result -->
                                     <?php while($row = mysqlI_fetch_array($result_for_selected_singer) ) : ?>
-                                    <option value=<?php echo($row['ARTIST_NAME']);?>>
-                                        <?php echo($row['ARTIST_NAME']);?></option>
+                                    <option value=<?php echo(preg_replace('/\s+/', '',$row['ARTIST_NAME']));?>>
+                                        <?php echo(preg_replace('/\s+/', '',$row['ARTIST_NAME']));?></option>
 
                                     <?php endwhile; ?>
                                     <!-- End Loop for Fetch Result -->

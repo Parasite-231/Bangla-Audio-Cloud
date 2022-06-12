@@ -16,6 +16,8 @@ if(isset($_POST['add']) && isset($_FILES['my_image']))
 	$error = $_FILES['my_image']['error'];
      $nationality = $_POST['nationality'];
 
+     $name2 = preg_replace('/\s+/', '', $name);
+
      require("../controllers/addArtist.php");
      if ($error === 0) {
 		if ($img_size > 3221225472) {
@@ -39,7 +41,7 @@ if(isset($_POST['add']) && isset($_FILES['my_image']))
 				// mysqli_query($conn, $sql);
 				// header("Location: view.php");
                 // Now let's Insert the video path into database
-                $query = addSinger($name,$new_img_name,$nationality);
+                $query = addSinger($name2,$new_img_name,$nationality);
         
            
             mysqli_query($conn, $query);
@@ -222,7 +224,7 @@ if(isset($_POST['add']) && isset($_FILES['my_image']))
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div
                     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="heading" style="font-size: 17px;"> <i class='bx bxs-notepad'></i></i>&nbsp;Active Tracks
+                    <h1 class="heading" style="font-size: 17px;"> <i class='bx bxs-notepad'></i></i>&nbsp;Add Singer
                     </h1>
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <!-- <div class="btn-group me-2">
@@ -251,17 +253,18 @@ if(isset($_POST['add']) && isset($_FILES['my_image']))
                     <div class=" card-body" style="width: 100% ;height:auto">
                         <form method="POST" enctype="multipart/form-data">
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Singer Name</label>
+                                <label for="exampleFormControlInput1" class="form-label">Singer Name :</label>
                                 <input type="text" class="form-control" name="name" id="exampleFormControlInput1"
                                     placeholder="Singer name">
                             </div>
                             <div class="custom-file">
+                                <label class="custom-file-label" for="inputGroupFile02">Choose Profile Image :</label>
                                 <input type="file" class="custom-file-input" id="inputGroupFile02" name="my_image"
                                     style="width: 100%;">
-                                <label class="custom-file-label" for="inputGroupFile02"></label>
+
                             </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Nationality</label>
+                            <div class="mb-3" style="margin-top:10px ;">
+                                <label for="exampleFormControlInput1" class="form-label"> Nationality :</label>
                                 <input type="text" class="form-control" name="nationality" id="exampleFormControlInput1"
                                     placeholder="Nationality">
                             </div>

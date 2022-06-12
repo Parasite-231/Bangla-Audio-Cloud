@@ -9,26 +9,26 @@
     </li>
     <li class="nav-item">
         <a href="showArtists.php" class="nav-link " style="color: white;">
-            <i class='bx bxs-analyse'></i>
+            <i class='bx bxs-microphone'></i>
             Artists
         </a>
     </li>
     <li class="nav-item">
         <a href="showTracks.php" class="nav-link " style="color: white;">
-            <i class='bx bxs-building-house'></i>
+            <i class='bx bxs-save'></i>
             Music
         </a>
     </li>
     <li class="nav-item ">
         <p style="color:cyan">Add Data &nbsp;<i class='bx bxs-right-arrow'></i></p>
         <a class="nav-link " href="addSinger.php" style="color: white;">
-            <i class='bx bxs-location-plus'></i>
+            <i class='bx bxs-user-plus'></i>
             Add Artist
         </a>
     </li>
     <li class="nav-item ">
         <a class="nav-link" href="addTrack.php" style="color: white;">
-            <i class='bx bxs-edit-location'></i>
+            <i class='bx bxs-folder-plus'></i>
             Add Music
         </a>
     </li>
