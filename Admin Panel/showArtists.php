@@ -245,7 +245,7 @@ if ($result && mysqli_num_rows($result) > 0) {
         ?>
                                 <tr>
                                     <td><?php echo $list['SINGER_ID']; ?></td>
-                                    <td><?php echo $list['SINGER_NAME']; ?></td>
+                                    <td><?php echo preg_replace('/(?<!\ )[A-Z]/', ' $0', $list['SINGER_NAME']); ?></td>
                                     <td>
                                         <img src="<?php echo "../images/".$list['ARTIST_IMAGE']; ?>" width="100px"
                                             style="text-align:centre ;" alt="">

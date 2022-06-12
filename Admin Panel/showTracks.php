@@ -9,21 +9,23 @@ $result = 0;
 
 
 
-if (isset($_POST['search'])) {
+// if (isset($_POST['search'])) {
 
    
 
     // include("../controllerOne.php");
-    require("../controllers/showTracksBetweenTwoDates.php");
+    // require("../controllers/showTracksBetweenTwoDates.php");
+    require("../controllers/test.php");
 
-    $start_date = $_POST['start_date'];
-    $end_date = $_POST['end_date'];
+    // $start_date = $_POST['start_date'];
+    // $end_date = $_POST['end_date'];
 
 
    
-    $query = findTracksBetweenTwoDates($start_date,$end_date);
+    // $query = findTracksBetweenTwoDates($start_date,$end_date);
+    $query = findTracksBetweenTwoDates();
     $result = mysqli_query($conn, $query);
-}
+// }
  ?>
 <!doctype html>
 <html lang="en">
@@ -213,42 +215,6 @@ if (isset($_POST['search'])) {
                 <!-- Form code begins -->
 
 
-                <div class="card w-100" style="height: auto;">
-                    <div class=" card-body" style="width: 100% ;height:auto">
-                        <form method="POST">
-                            <div class="row">
-                                <div class="col">
-                                    <label class="control-label" for="date">From : </label>
-                                    <!-- <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY"
-                                        type="text" /> -->
-                                    <i class='bx bxs-calendar' style="float:right ;"></i>
-                                    <input class="form-control" type="date" placeholder="MM-DD-YYYY " id="start"
-                                        name="start_date" value="<?php echo $start_date ?>" min="2020-01-01"
-                                        max="<?php echo newDate(0) ?>" />
-
-
-                                </div>
-                                <div class="col" style="margin-bottom: 10px">
-                                    <label class="control-label" for="date">To :</label>
-                                    <!-- <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY"
-                                        type="text" /> -->
-                                    <i class='bx bxs-calendar' style="float:right ;"></i>
-                                    <input class="form-control" type="date" placeholder="MM-DD-YYYY" id="start"
-                                        name="end_date" value="<?php echo $end_date ?>" min="2020-01-01"
-                                        max="<?php echo newDate(0) ?>" />
-
-                                </div>
-
-                            </div>
-                            <!-- Submit button -->
-                            <div class="col-md-4 col-lg-2"
-                                style="width:100%; margin: 0 auto; float: none; margin-bottom: 10px;">
-                                <button class="btn btn-info" style="margin-top:10px;width:100%" name="search"
-                                    type="submit">Search</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
                 <!-- Form code ends -->
 
                 <!-- </div> -->
@@ -265,8 +231,9 @@ if (isset($_POST['search'])) {
                                 <th>TRACK_ID</th>
                                 <th>MUSIC_TITLE</th>
                                 <th>ALBUM</th>
-                                <th>ADDED_DATE</th>
                                 <th>SINGER_NAME</th>
+                                <th>ADDED_DATE</th>
+
 
                             </tr>
                         </thead>
@@ -279,17 +246,19 @@ if ($result && mysqli_num_rows($result) > 0) {
         $MUSIC_TITLE = $list['MUSIC_TITLE'];
         $ALBUM = $list['ALBUM'];
         $ADDED_DATE = $list['ADDED_DATE'];
-        $SINGER_NAME = $list['SINGER_NAME'];
+        $SINGER_NAME = preg_replace('/(?<!\ )[A-Z]/', ' $0', $list['SINGER_NAME']);
+       
   
 
         echo "
       
         <tr>
+      
             <td>$TRACK_ID</td>
             <td>$MUSIC_TITLE</td>
             <td>$ALBUM</td>
+            <td>$SINGER_NAME </td>
             <td>$ADDED_DATE</td>
-            <td>$SINGER_NAME</td>
     
         </tr>
      
@@ -300,7 +269,7 @@ if ($result && mysqli_num_rows($result) > 0) {
     }
     // echo "<input type='button' class='btn btn-warning' style='margin:1%' onclick='PrintTable();' value='Print'/>";
 
-    echo " <a href='showTracks.php' style='float:right;margin:1%' class='btn btn-danger'>Reset</a>";
+    // echo " <a href='showTracks.php' style='float:right;margin:1%' class='btn btn-danger'>Reset</a>";
 
     
 }

@@ -227,7 +227,7 @@ if (isset($_POST['upload']) && isset($_FILES['my_audio']))
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div
                     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="heading" style="font-size: 17px;"> <i class='bx bxs-notepad'></i></i>&nbsp;Active Tracks
+                    <h1 class="heading" style="font-size: 17px;"> <i class='bx bxs-notepad'></i></i>&nbsp;Upload Track
                     </h1>
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <!-- <div class="btn-group me-2">
@@ -257,14 +257,16 @@ if (isset($_POST['upload']) && isset($_FILES['my_audio']))
                         <form method="POST" enctype="multipart/form-data">
                             <div class="input-group mb-7" style="width: 100%;">
                                 <div class="custom-file">
+                                    <label class="custom-file-label" for="inputGroupFile02">Upload Audio :</label>
                                     <input type="file" class="custom-file-input" id="inputGroupFile02" name="my_audio"
                                         style="width: 100%;">
-                                    <label class="custom-file-label" for="inputGroupFile02"></label>
+
                                 </div>
 
                             </div>
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Music Title :</label>
+                                <label for="exampleFormControlInput1" class="form-label" style="margin-top: 10px;">Music
+                                    Title :</label>
                                 <input type="text" class="form-control" name="title" id="exampleFormControlInput1"
                                     placeholder="Music Title">
                             </div>

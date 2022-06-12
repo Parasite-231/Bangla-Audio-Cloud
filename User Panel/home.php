@@ -50,7 +50,8 @@
                 <img src="../images/<?php echo $row['ARTIST_IMAGE'] ?>" class="card-img-top" width="340px"
                     height="300px" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Singer : <?php echo $row['ARTIST_NAME'] ?></h5>
+                    <h5 class="card-title">Singer :
+                        <?php echo preg_replace('/(?<!\ )[A-Z]/', ' $0', $row['ARTIST_NAME']);?></h5>
                     <p class="card-text" style="font-style:normal ;">Nationality : <?php echo $row['NATIONALITY'] ?></p>
 
                     <form>
@@ -69,7 +70,7 @@
 
     else{
 
-        header("Location: error.php");
+        header("Location: error2.php");
     }
 
     ?>
